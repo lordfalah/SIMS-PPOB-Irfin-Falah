@@ -21,6 +21,7 @@ import { useRef, useState, useTransition } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
+import { apiSlice } from "@/features/api/api-slice";
 
 const Account = () => {
   const [isPending, startTransition] = useTransition();
@@ -147,7 +148,8 @@ const Account = () => {
         onSubmit={onSubmit}
         onLogout={() => {
           dispatch(logout());
-          navigate("/auth/login");
+          dispatch(apiSlice.util.resetApiState());
+          navigate("/auth/login", { replace: true });
         }}
       />
     </div>
