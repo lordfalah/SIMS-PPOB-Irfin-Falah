@@ -1,73 +1,105 @@
-# React + TypeScript + Vite
+# 🚀 SIMS PPOB - Online Payment Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A web-based Online Payment and Point of Sale (PPOB) application built for the **Front End Programmer Assignment**. This project demonstrates advanced implementation of **React**, **Redux Toolkit Query (RTK Query)**, and **TypeScript** with a focus on state management, secure routing, and clean UI/UX.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## React Compiler
+* **🔒 Secure Authentication**: Login and Registration with persistent session management using LocalStorage and Redux state.
+* **📡 Real-time Data Sync**: Integrated with RTK Query for efficient data fetching, caching, and automatic cache invalidation (`resetApiState`) during account switching.
+* **💳 Transaction Management**:
+    * Dynamic Balance Inquiry dengan fitur *show/hide toggle*.
+    * Fungsionalitas Top Up dengan pembaruan saldo instan.
+    * Pembayaran layanan (PLN, Pulsa, dll.) dilengkapi dengan dialog konfirmasi dan status sukses/gagal.
+    * Riwayat transaksi mendetail dengan logika *infinite scroll* / penggabungan cache.
+* **👤 Profile Management**: Melihat dan mengubah profil pengguna, termasuk integrasi *image preview* untuk pembaruan foto avatar.
+* **🛡️ Advanced Routing**: Mengimplementasikan logika **React Router Middleware** untuk menangani proteksi rute (*Private & Guest routes*).
+* **📱 Responsive Design**: UI yang sepenuhnya responsif menggunakan **Tailwind CSS** dan **Shadcn UI**.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+| Technology | Purpose |
+| :--- | :--- |
+| **React 18** | UI Library |
+| **TypeScript** | Static Typing & Code Reliability |
+| **Redux Toolkit** | State Management |
+| **RTK Query** | Data Fetching & Cache Management |
+| **React Router** | Routing & Middleware logic |
+| **Tailwind CSS** | Styling |
+| **Shadcn UI** | Accessible UI Components |
+| **Zod + React Hook Form** | Schema Validation & Form Handling |
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🏗️ Project Architecture
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Proyek ini mengikuti struktur folder modular untuk kemudahan pemeliharaan (*maintainability*):
+
+```text
+src/
+├── app/            # Redux store configuration
+├── components/     # Reusable UI & Layout components
+├── features/       # RTK Query slices (split by domain: profile, transaction, etc.)
+├── hooks/          # Custom React hooks
+├── layout/         # Route layouts (AuthLayout, DashboardLayout)
+├── lib/            # Utility functions (formatters, auth-store)
+├── pages/          # Page components
+├── routes/         # Router configuration & Middleware
+└── validation/     # Zod schemas untuk form validation
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🚀 Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Ikuti langkah-langkah di bawah ini untuk menjalankan proyek di lingkungan lokal Anda.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 1. Prasyarat (Prerequisites)
+
+Pastikan perangkat Anda sudah terinstall komponen berikut:
+* **Node.js**: Versi v18 atau yang terbaru.
+* **Package Manager**: Bisa menggunakan **Bun** (direkomendasikan untuk kecepatan) atau **NPM**.
+
+### 2. Instalasi (Installation)
+
+```bash
+# Clone repository ini
+git clone [https://github.com/username-anda/sims-ppob-irfin-falah.git](https://github.com/username-anda/sims-ppob-irfin-falah.git)
+
+# Masuk ke folder proyek
+cd sims-ppob-irfin-falah
+
+# Install semua dependencies
+bun install
+# atau jika menggunakan npm:
+npm install
 ```
+### 3. Konfigurasi Environment
+Buat file bernama .env di root folder proyek dan masukkan API URL:
+
+```bash
+VITE_API_URL=[https://take-home-test-api.nutech-integrasi.com](https://take-home-test-api.nutech-integrasi.com)
+```
+
+### 4. Menjalankan Aplikasi
+
+```bash
+# Jalankan mode development
+bun run dev
+# atau
+npm run dev
+```
+
+---
+
+## 👤 Author
+
+* **Irfin Falah** - *Front End Developer*
+* **GitHub**: [@irfinfalah](https://github.com/lordfalah)
+* **LinkedIn**: [Irfin Falah](https://www.linkedin.com/in/irfinfalah/) 
+* **Deployment**: [🚀 SIMS PPOB Live App](https://sims-ppob-irfin-falah.vercel.app/)
+
+---
+
+
